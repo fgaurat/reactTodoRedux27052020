@@ -51,7 +51,7 @@ class App extends React.Component {
                 'Content-Type': 'application/json'
             },                
             body:JSON.stringify(todoForm)
-        })
+        }).then(_ => this.loadTodos())
 
 }
 
