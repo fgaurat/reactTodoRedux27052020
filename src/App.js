@@ -10,7 +10,13 @@ class App extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      todos: []
+      todos: [],
+      todoForm:{
+        title:'Todo 1',
+        dueDate:'',
+        done:true        
+      }
+      
     };
 
     this.deleteTodo = this.deleteTodo.bind(this)
@@ -33,15 +39,40 @@ class App extends React.Component {
     fetch(url, { method: 'DELETE' }).then(_ => this.loadTodos())
   }
 
+  handleSubmit = (event)=>{
+    event.preventDefault();
+    const todoForm = this.state.todoForm
+    const url = `http://localhost:3001/todos/`
+    fetch(url,
+        {
+            method:'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },                
+            body:JSON.stringify(todoForm)
+        })
 
+}
+
+handleChange = (event) => {
+  event.preventDefault();
+  const name = event.target.name
+  const value = (name ==='done')? event.target.checked:event.target.value
+  this.setState( 
+      { [name]:value}
+  )
+
+}
 
   render() {
     const todoList = this.state.todos
+    const todoForm = this.state.todoForm
 
     return (
       <div className="container">
         <h1>Todo Form</h1>
-        <TodoForm />
+        <TodoForm formData={todoForm} handleSubmit={this.handleSubmit} handleChange={this.handleChange} />
 
         <h1>Todo List</h1>
         <TodoList todos={todoList} onDeleteTodo={this.deleteTodo}/>
