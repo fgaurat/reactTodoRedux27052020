@@ -4,7 +4,6 @@ import React from 'react';
 function TodoForm(props){
 
         const todoForm = props.formData
-        console.log(todoForm)
         return (
             <form onSubmit={ props.handleSubmit}>
                 <div className="form-group">
@@ -18,7 +17,7 @@ function TodoForm(props){
 
                 <div className="form-group">
                     <label htmlFor="done">Done ?</label>
-                    <input className="form-control" type="checkbox" id="done" name="done" checked={todoForm.done} onChange={props.handleChange}/>
+                    <input className="form-control" type="checkbox" id="done" name="completed" checked={todoForm.completed} onChange={props.handleChange}/>
                 </div>
 
                 <div className="form-group">

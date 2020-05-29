@@ -8,6 +8,7 @@ function TodoItem(props) {
         <tr>
             <td>{todo.id}</td>
             <td>{todo.title}</td>
+            <td>{todo.dueDate}</td>
             <td>{todo.completed?'done':'! done'}</td>
             <td><button className="btn btn-danger" onClick={onDeleteTodo} >delete</button></td>
         </tr>

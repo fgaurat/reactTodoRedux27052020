@@ -4,9 +4,19 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
+import reducerTodos from './reducers/todos.reducer'
+import { createStore, applyMiddleware,compose } from 'redux';
+import { Provider } from 'react-redux';
+import thunk from 'redux-thunk'
+
+
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const storeTodos= createStore(reducerTodos,composeEnhancers(applyMiddleware(thunk)))
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Provider store={storeTodos}>
+      <App />
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );

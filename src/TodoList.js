@@ -2,30 +2,40 @@ import React from 'react';
 import TodoItem from './TodoItem';
 
 
-function TodoList(props) {
+class TodoList extends React.Component {
 
+    constructor(props) {
+        super(props)
+    }
 
-    let arr = props.todos.map(
-        theTodo => (<TodoItem key={theTodo.id} todo={theTodo} onDeleteTodo={_ => props.onDeleteTodo(theTodo)} />)
-    );
+    componentDidMount() {
+        this.props.loadTodos()
+    }
 
-    return (
-        <div>
-            <table className="table" >
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Title</th>
-                        <th>Completed</th>
-                    </tr>
-                </thead>
-                <tbody>
+    render() {
+        let arr = this.props.todos.map(
+            theTodo => (<TodoItem key={theTodo.id} todo={theTodo} onDeleteTodo={_ => this.props.onDeleteTodo(theTodo)} />)
+        );
 
-                    {arr}
-                </tbody>
-            </table>
-        </div>
-    );
+        return (
+            <div>
+                <table className="table" >
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Title</th>
+                            <th>dueDate</th>
+                            <th>Completed</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        {arr}
+                    </tbody>
+                </table>
+            </div>
+        );
+    }
 }
 
 export default TodoList;
