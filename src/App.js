@@ -19,15 +19,9 @@ class App extends React.Component {
 
     };
 
-    this.deleteTodo = this.deleteTodo.bind(this)
   }
 
-  deleteTodo = (theTodo) => {
-    const todo = theTodo
-    const url = `http://localhost:3001/todos/${todo.id}`
-
-    fetch(url, { method: 'DELETE' }).then(_ => this.loadTodos())
-  }
+ 
 
   handleSubmit = (event) => {
     event.preventDefault();

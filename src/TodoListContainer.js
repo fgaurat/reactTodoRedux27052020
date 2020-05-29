@@ -1,13 +1,13 @@
 import TodoList from './TodoList';
 import { connect } from 'react-redux';
-import { loadTodos } from './actions/todo.actions';
+import { loadTodos,deleteTodo } from './actions/todo.actions';
 
 const mapStateToProps = (state) => ({
     todos: state.todos
 })
 
 const mapDispatchToProps = (dispatch) => ({
-    onDeleteTodo: todo => dispatch({ type: "DELETE_TODO", payload: todo }),
+    onDeleteTodo: todo => dispatch(deleteTodo(todo)),
     loadTodos: _ => dispatch(loadTodos())
 })
 
